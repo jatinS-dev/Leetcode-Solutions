@@ -4,10 +4,10 @@ public:
         
         int ans = 0;
         
-        for(int i = 0; i<jewels.length(); i++){
-            for(int j = 0;j<stones.length();j++){
+        for(int k = 0; k<jewels.length(); k++){
+            for(int l = 0;l<stones.length();l++){
                 
-                if(jewels[i]==stones[j]){
+                if(jewels[k]==stones[l]){
                     ans++;
                 }
                 
