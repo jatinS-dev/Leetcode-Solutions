@@ -8,22 +8,38 @@ public:
 		    g[e[1]].push_back(e[0]); 
         }
     }
-    int dfs(int node, int myCost, vector<bool>& hasApple) {
-	  if (visited[node]) {
-		  return 0;
-	  }
-	  visited[node] = true;
-	  
-      int childrenCost = 0;  
-      for (auto x: g[node]) { 
-        childrenCost += dfs(x, 2, hasApple);
-      }
-
-      if (childrenCost == 0 && hasApple[node] == false) {
-        return 0;
-      }
-      return (childrenCost + myCost);
+    
+    int dfs(int node, int cost, vector<bool> &hasApple) {
+        if(visited[node]) {
+            return 0;
+        }
+        visited[node] = true;
+        int childCost = 0;
+        for(auto it : g[node]) {
+            childCost += dfs(it, 2, hasApple);
+        }
+        if(childCost == 0 && hasApple[node] == false) {
+            return 0;
+        }
+        return (childCost+cost);
     }
+    
+//     int dfs(int node, int myCost, vector<bool>& hasApple) {
+// 	  if (visited[node]) {
+// 		  return 0;
+// 	  }
+// 	  visited[node] = true;
+	  
+//       int childrenCost = 0;  
+//       for (auto x: g[node]) { 
+//         childrenCost += dfs(x, 2, hasApple);
+//       }
+
+//       if (childrenCost == 0 && hasApple[node] == false) {
+//         return 0;
+//       }
+//       return (childrenCost + myCost);
+//     }
     int minTime(int n, vector<vector<int>>& edges, vector<bool>& hasApple) {
         createGraph(edges); 
         return dfs(0, 0, hasApple); 
